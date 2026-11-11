@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import {
   View,
@@ -13,6 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 export default function BeforeLogin() {
   return (
     <View style={styles.container}>
+
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Account</Text>
@@ -22,59 +22,61 @@ export default function BeforeLogin() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
+
         {/* Account Card */}
         <View style={styles.accountCard}>
+
+          {/* User Icon */}
           <View style={styles.userIcon}>
-            <Ionicons name="person" size={28} color="#075B36" />
+            <Ionicons
+              name="person-outline"
+              size={30}
+              color="#171717"
+            />
           </View>
 
+          {/* Title */}
           <Text style={styles.title}>
             Sign in to make Dash yours
           </Text>
 
-          <Text style={styles.subtitle}>
-            Track orders, save favorites, and enjoy a faster checkout.
-          </Text>
-
           {/* Features */}
           <View style={styles.features}>
+
             <Feature
-              icon="bag-check-outline"
-              text="Track your orders"
+              icon="receipt-outline"
+              text="Every order and receipt, on any device"
             />
+
+            <Feature
+              icon="location-outline"
+              text="Saved addresses for one-tap checkout"
+            />
+
             <Feature
               icon="heart-outline"
-              text="Save your favorites"
+              text="Favorite restaurants, always close by"
             />
-            <Feature
-              icon="time-outline"
-              text="Reorder in one tap"
-            />
+
           </View>
 
-          {/* Buttons */}
+          {/* Create Account Button */}
           <TouchableOpacity style={styles.createButton}>
             <Text style={styles.createButtonText}>
               Create account
             </Text>
           </TouchableOpacity>
 
+          {/* Sign In Button */}
           <TouchableOpacity style={styles.signInButton}>
             <Text style={styles.signInButtonText}>
               Sign in
             </Text>
           </TouchableOpacity>
-        </View>
-      </ScrollView>
 
-      {/* Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <NavItem icon="home-outline" label="Home" />
-        <NavItem icon="search-outline" label="Search" />
-        <NavItem icon="bag-outline" label="Cart" />
-        <NavItem icon="receipt-outline" label="Orders" />
-        <NavItem icon="person" label="Account" active />
-      </View>
+        </View>
+
+      </ScrollView>
     </View>
   );
 }
@@ -83,32 +85,21 @@ export default function BeforeLogin() {
 function Feature({ icon, text }: any) {
   return (
     <View style={styles.featureItem}>
-      <Ionicons name={icon} size={20} color="#FFC928" />
-      <Text style={styles.featureText}>{text}</Text>
+      <Ionicons
+        name={icon}
+        size={23}
+        color="#FFC928"
+      />
+
+      <Text style={styles.featureText}>
+        {text}
+      </Text>
     </View>
   );
 }
 
-// Navigation Component
-function NavItem({ icon, label, active = false }: any) {
-  return (
-    <TouchableOpacity style={styles.navItem}>
-      <Ionicons
-        name={icon}
-        size={23}
-        color={active ? '#16804B' : '#888888'}
-      />
-      <Text style={[
-        styles.navText,
-        active && styles.activeNavText,
-      ]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
-  );
-}
-
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -134,9 +125,11 @@ const styles = StyleSheet.create({
 
   accountCard: {
     backgroundColor: '#075B36',
-    borderRadius: 22,
-    padding: 24,
-    alignItems: 'center',
+    borderRadius: 35,
+    paddingHorizontal: 25,
+    paddingTop: 25,
+    paddingBottom: 28,
+    alignItems: 'stretch',
   },
 
   userIcon: {
@@ -146,39 +139,32 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFC928',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 40,
   },
 
   title: {
-    fontSize: 21,
+    fontSize: 23,
     fontWeight: '700',
     color: '#FFFFFF',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-
-  subtitle: {
-    fontSize: 14,
-    color: '#E0EEE5',
-    textAlign: 'center',
-    lineHeight: 21,
-    marginBottom: 25,
+    textAlign: 'left',
+    marginBottom: 30,
   },
 
   features: {
     width: '100%',
-    gap: 18,
-    marginBottom: 28,
+    gap: 22,
+    marginBottom: 40,
   },
 
   featureItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 14,
   },
 
   featureText: {
-    fontSize: 14,
+    flex: 1,
+    fontSize: 15,
     color: '#FFFFFF',
     fontWeight: '500',
   },
@@ -186,56 +172,31 @@ const styles = StyleSheet.create({
   createButton: {
     width: '100%',
     backgroundColor: '#FFC928',
-    borderRadius: 12,
-    paddingVertical: 15,
+    borderRadius: 35,
+    paddingVertical: 17,
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 14,
   },
 
   createButtonText: {
-    color: '#075B36',
-    fontSize: 15,
-    fontWeight: '700',
+    color: '#171717',
+    fontSize: 17,
+    fontWeight: '600',
   },
 
   signInButton: {
     width: '100%',
     borderWidth: 1,
     borderColor: '#FFFFFF',
-    borderRadius: 12,
-    paddingVertical: 15,
+    borderRadius: 35,
+    paddingVertical: 17,
     alignItems: 'center',
   },
 
   signInButtonText: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '600',
   },
 
-  bottomNav: {
-    height: 75,
-    borderTopWidth: 1,
-    borderTopColor: '#EEEEEE',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-
-  navItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
-  },
-
-  navText: {
-    fontSize: 10,
-    color: '#888888',
-  },
-
-  activeNavText: {
-    color: '#16804B',
-    fontWeight: '700',
-  },
 });
