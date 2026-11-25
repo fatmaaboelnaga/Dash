@@ -37,7 +37,7 @@ const PaymentAndNotifications = () => {
 
       <Text style={{marginBottom:s(10), fontWeight:500}}>Default payment</Text>
 
-      <View style={styles.paymethods}>
+      <View>
         {
             paymentMethods.map((elem)=>(
                 <PaymentMethod icon={elem.icon} name={elem.name} desc={elem.desc}/>

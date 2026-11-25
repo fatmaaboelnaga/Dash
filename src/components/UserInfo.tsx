@@ -37,6 +37,5 @@ const styles = StyleSheet.create({
     },
     userInfoTop : {
         flexDirection:"row",
-        // justifyContent:"space-around"
     },
 })
