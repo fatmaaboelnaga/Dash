@@ -14,11 +14,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 type RestaurantCardProps = {
   name: string;
   category: string;
-  rating: string;
+  rating: string | number;
   time: string;
   price: string;
   image: string;
   offer?: string;
+  onPress?: () => void;
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
 };
 
 const RestaurantCard = ({
@@ -29,31 +32,38 @@ const RestaurantCard = ({
   price,
   image,
   offer,
+  onPress,
+  isFavorite,
+  onToggleFavorite,
 }: RestaurantCardProps) => {
   return (
-    <TouchableOpacity style={styles.card} activeOpacity={0.9}>
+    <TouchableOpacity
+      style={styles.card}
+      activeOpacity={0.9}
+      onPress={onPress}
+    >
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: image }}
           style={styles.image}
         />
 
-        {/* Offer Badge */}
-        {offer && (
+        {offer ? (
           <View style={styles.offerBadge}>
             <Text style={styles.offerText}>{offer}</Text>
           </View>
-        )}
+        ) : null}
 
         {/* Favorite Button */}
         <TouchableOpacity
           style={styles.favorite}
           activeOpacity={0.8}
+          onPress={onToggleFavorite}
         >
           <Ionicons
-            name="heart-outline"
+            name={isFavorite ? "heart" : "heart-outline"}
             size={s(19)}
-            color="#17231D"
+            color={isFavorite ? "#E53935" : "#17231D"}
           />
         </TouchableOpacity>
       </View>

@@ -15,14 +15,25 @@ import Categories from "../components/Categories";
 import PromoBanner from "../components/PromoBanner";
 import PopularRestaurants from "../components/PopularRestaurants";
 import RestaurantList from "../components/RestaurantList";
-import BottomNavigation from "../components/BottomNavigation";
+
 
 type HomeProps = {
   onSelectCategory: (category: string | null) => void;
   onSearch: (text: string) => void;
+  onSelectRestaurant: (restaurantId: string) => void;
+
+  // Favorites
+  favoriteRestaurantIds: string[];
+  onToggleFavorite: (restaurantId: string) => void;
 };
 
-const Home = ({ onSelectCategory, onSearch }: HomeProps) => {
+const Home = ({
+  onSelectCategory,
+  onSearch,
+  onSelectRestaurant,
+  favoriteRestaurantIds,
+  onToggleFavorite,
+}: HomeProps) => {
   const [searchText, setSearchText] = useState("");
 
   return (
@@ -35,23 +46,33 @@ const Home = ({ onSelectCategory, onSearch }: HomeProps) => {
       >
         <Header />
 
-       <SearchBar
-  value={searchText}
-  onChangeText={(text) => {
-    setSearchText(text);
+        <SearchBar
+          value={searchText}
+          onChangeText={(text) => {
+            setSearchText(text);
 
-    if (text.trim().length > 0) {
-      onSearch(text);
-    }
-  }}
-/>
+            if (text.trim().length > 0) {
+              onSearch(text);
+            }
+          }}
+        />
 
         <Categories onSelectCategory={onSelectCategory} />
 
         <PromoBanner />
-        <PopularRestaurants />
-        <RestaurantList />
-        <BottomNavigation />
+
+        <PopularRestaurants
+          onSelectRestaurant={onSelectRestaurant}
+          favoriteRestaurantIds={favoriteRestaurantIds}
+          onToggleFavorite={onToggleFavorite}
+        />
+
+        <RestaurantList
+          onSelectRestaurant={onSelectRestaurant}
+          favoriteRestaurantIds={favoriteRestaurantIds}
+          onToggleFavorite={onToggleFavorite}
+        />
+
       </ScrollView>
     </View>
   );
@@ -65,9 +86,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
 
- scrollContent: {
-  paddingHorizontal: s(20),
-  paddingTop: s(60),
-  paddingBottom: s(30),
-},
+  scrollContent: {
+    paddingHorizontal: s(20),
+    paddingTop: s(60),
+    paddingBottom: s(30),
+  },
 });

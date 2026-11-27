@@ -12,110 +12,99 @@ import {
 import { s } from "react-native-size-matters";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const restaurants = [
-  {
-    id: "1",
-    name: "Margherita",
-    category: "Italian • Pizza",
-    rating: "4.8",
-    time: "20-30 min",
-    image:
-      "https://images.unsplash.com/photo-1579751626657-72bc17010498?w=500",
-  },
-  {
-    id: "2",
-    name: "Tonkotsu",
-    category: "Japanese • Ramen",
-    rating: "4.9",
-    time: "25-35 min",
-    image:
-      "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500",
-  },
-  {
-    id: "3",
-    name: "Double Smash",
-    category: "American • Burgers",
-    rating: "4.7",
-    time: "15-25 min",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
-  },
-  
-];
+import restaurants from "../data/restaurants.json";
 
-const PopularRestaurants = () => {
+const popularRestaurants = [...restaurants]
+  .sort((a, b) => b.rating - a.rating)
+  .slice(0, 3);
+
+type PopularRestaurantsProps = {
+  onSelectRestaurant: (restaurantId: string) => void;
+  favoriteRestaurantIds: string[];
+  onToggleFavorite: (restaurantId: string) => void;
+};
+
+const PopularRestaurants = ({
+  onSelectRestaurant,
+  favoriteRestaurantIds,
+  onToggleFavorite,
+}: PopularRestaurantsProps) => {
   return (
     <View style={styles.container}>
-
-      {/* Section Header */}
       <View style={styles.header}>
-        <Text style={styles.title}>
-          Popular near you
-        </Text>
-
-        {/* <TouchableOpacity>
-          <Text style={styles.seeAll}>
-            See all
-          </Text>
-        </TouchableOpacity> */}
+        <Text style={styles.title}>Popular near you</Text>
       </View>
 
-      {/* Restaurants List */}
       <FlatList
-        data={restaurants}
+        data={popularRestaurants}
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.card}>
+        renderItem={({ item }) => {
+          const isFavorite = favoriteRestaurantIds.includes(item.id);
 
-            <Image
-              source={{ uri: item.image }}
-              style={styles.image}
-            />
+          return (
+            <View style={styles.card}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => onSelectRestaurant(item.id)}
+              >
+                <Image
+                  source={{ uri: item.image }}
+                  style={styles.image}
+                />
+              </TouchableOpacity>
 
-            <View style={styles.info}>
+              <TouchableOpacity
+                style={styles.heartButton}
+                onPress={() => onToggleFavorite(item.id)}
+                activeOpacity={0.8}
+              >
+                <Ionicons
+                  name={isFavorite ? "heart" : "heart-outline"}
+                  size={s(20)}
+                  color={isFavorite ? "#E53935" : "#68736D"}
+                />
+              </TouchableOpacity>
 
-              <Text style={styles.name}>
-                {item.name}
-              </Text>
+              <TouchableOpacity
+                style={styles.info}
+                activeOpacity={0.8}
+                onPress={() => onSelectRestaurant(item.id)}
+              >
+                <Text style={styles.name}>{item.name}</Text>
 
-              <Text style={styles.category}>
-                {item.category}
-              </Text>
+                <Text style={styles.category}>
+                  {item.cuisine} • {item.category}
+                </Text>
 
-              <View style={styles.details}>
+                <View style={styles.details}>
+                  <View style={styles.detailItem}>
+                    <Ionicons
+                      name="star"
+                      size={s(12)}
+                      color="#F5B82E"
+                    />
+                    <Text style={styles.detailText}>{item.rating}</Text>
+                  </View>
 
-                <View style={styles.detailItem}>
-                  <Ionicons
-                    name="star"
-                    size={s(12)}
-                    color="#F5B82E"
-                  />
-                  <Text style={styles.detailText}>
-                    {item.rating}
-                  </Text>
+                  <View style={styles.detailItem}>
+                    <Ionicons
+                      name="time-outline"
+                      size={s(12)}
+                      color="#68736D"
+                    />
+                    <Text style={styles.detailText}>
+                      {item.deliveryTime}
+                    </Text>
+                  </View>
                 </View>
-
-                <View style={styles.detailItem}>
-                  <Ionicons
-                    name="time-outline"
-                    size={s(12)}
-                    color="#68736D"
-                  />
-                  <Text style={styles.detailText}>
-                    {item.time}
-                  </Text>
-                </View>
-
-              </View>
+              </TouchableOpacity>
             </View>
-
-          </TouchableOpacity>
-        )}
+          );
+        }}
       />
-
     </View>
   );
 };
@@ -141,12 +130,6 @@ const styles = StyleSheet.create({
     color: "#17231D",
   },
 
-  seeAll: {
-    fontSize: s(12),
-    fontWeight: "700",
-    color: "#205C3F",
-  },
-
   list: {
     gap: s(13),
     paddingBottom: s(5),
@@ -166,6 +149,20 @@ const styles = StyleSheet.create({
     width: "100%",
     height: s(105),
     resizeMode: "cover",
+  },
+
+  heartButton: {
+    position: "absolute",
+    top: s(8),
+    right: s(8),
+    width: s(32),
+    height: s(32),
+    borderRadius: s(16),
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 3,
+    zIndex: 1,
   },
 
   info: {
