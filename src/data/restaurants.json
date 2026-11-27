@@ -1,0 +1,405 @@
+[
+  {
+    "id": "restaurant-001",
+    "name": "Kumo Ramen",
+    "cuisine": "Japanese",
+    "category": "Ramen",
+    "rating": 4.7,
+    "reviewsCount": 1700,
+    "deliveryTime": "25-35 min",
+    "distance": 2.4,
+    "deliveryFee": 1.99,
+    "offer": {
+      "discount": "20%",
+      "condition": "over $30"
+    },
+    "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1000",
+    "description": "Authentic Japanese ramen with rich broths and freshly prepared toppings.",
+    "menuSections": [
+      {
+        "id": "ramen",
+        "name": "Ramen",
+        "items": [
+          {
+            "id": "ramen-001",
+            "name": "Tonkotsu",
+            "description": "18-hour pork broth, chashu, ajitama egg, scallion and nori.",
+            "price": 16.0,
+            "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600",
+            "badge": "POPULAR"
+          },
+          {
+            "id": "ramen-002",
+            "name": "Spicy Miso",
+            "description": "Red miso broth, ground pork, corn and bean sprouts.",
+            "price": 16.5,
+            "image": "https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=600",
+            "badge": null
+          },
+          {
+            "id": "ramen-003",
+            "name": "Shoyu Chicken",
+            "description": "Clear soy chicken broth, chicken chashu and menma.",
+            "price": 15.0,
+            "image": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=600",
+            "badge": null
+          },
+          {
+            "id": "ramen-004",
+            "name": "Vegan Tantanmen",
+            "description": "Sesame soy milk broth, spiced tofu and bok choy.",
+            "price": 15.0,
+            "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "small-plates",
+        "name": "Small plates",
+        "items": [
+          {
+            "id": "plate-001",
+            "name": "Pork Gyoza (6)",
+            "description": "Pan-fried dumplings with ponzu dipping sauce.",
+            "price": 8.0,
+            "image": "https://images.unsplash.com/photo-1563246147-5117f9f297d9?w=600",
+            "badge": null
+          },
+          {
+            "id": "plate-002",
+            "name": "Chicken Karaage",
+            "description": "Crispy fried chicken thigh with lemon and kewpie mayo.",
+            "price": 9.0,
+            "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600",
+            "badge": null
+          },
+          {
+            "id": "plate-003",
+            "name": "Edamame",
+            "description": "Steamed soybeans finished with flaky sea salt.",
+            "price": 5.0,
+            "image": "https://images.unsplash.com/photo-1564894809611-1742fc40ed80?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "name": "Drinks",
+        "items": [
+          {
+            "id": "drink-001",
+            "name": "Yuzu Lemonade",
+            "description": "House-made yuzu citrus lemonade.",
+            "price": 4.5,
+            "image": "https://images.unsplash.com/photo-1513558161293-c04e6f4e3b3c?w=600",
+            "badge": null
+          },
+          {
+            "id": "drink-002",
+            "name": "Iced Matcha",
+            "description": "Japanese matcha shaken with cold milk.",
+            "price": 5.0,
+            "image": "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=600",
+            "badge": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "restaurant-002",
+    "name": "Urban Burger",
+    "cuisine": "American",
+    "category": "Burgers",
+    "rating": 4.8,
+    "reviewsCount": 2350,
+    "deliveryTime": "15-25 min",
+    "distance": 1.8,
+    "deliveryFee": 1.49,
+    "offer": {
+      "discount": "FREE DELIVERY",
+      "condition": "on selected orders"
+    },
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1000",
+    "description": "Juicy grilled burgers, crispy sides and house-made sauces.",
+    "menuSections": [
+      {
+        "id": "burgers",
+        "name": "Burgers",
+        "items": [
+          {
+            "id": "burger-001",
+            "name": "Classic Smash",
+            "description": "Double smashed beef, cheddar, pickles and house sauce.",
+            "price": 12.5,
+            "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
+            "badge": "BESTSELLER"
+          },
+          {
+            "id": "burger-002",
+            "name": "BBQ Bacon Burger",
+            "description": "Beef patty, smoked bacon, BBQ sauce and crispy onion.",
+            "price": 14.0,
+            "image": "https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=600",
+            "badge": null
+          },
+          {
+            "id": "burger-003",
+            "name": "Crispy Chicken Burger",
+            "description": "Crunchy chicken, lettuce, pickles and spicy mayo.",
+            "price": 11.0,
+            "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "sides",
+        "name": "Sides",
+        "items": [
+          {
+            "id": "side-001",
+            "name": "Loaded Fries",
+            "description": "Golden fries topped with cheese sauce and herbs.",
+            "price": 6.0,
+            "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
+            "badge": null
+          },
+          {
+            "id": "side-002",
+            "name": "Onion Rings",
+            "description": "Crispy battered onion rings with ranch dip.",
+            "price": 5.0,
+            "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "name": "Drinks",
+        "items": [
+          {
+            "id": "drink-101",
+            "name": "Classic Lemonade",
+            "description": "Freshly squeezed lemonade served chilled.",
+            "price": 3.5,
+            "image": "https://images.unsplash.com/photo-1513558161293-c04e6f4e3b3c?w=600",
+            "badge": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "restaurant-003",
+    "name": "Pizza House",
+    "cuisine": "Italian",
+    "category": "Pizza",
+    "rating": 4.7,
+    "reviewsCount": 1840,
+    "deliveryTime": "25-35 min",
+    "distance": 3.1,
+    "deliveryFee": 1.99,
+    "offer": {
+      "discount": "15% OFF",
+      "condition": "on orders over $25"
+    },
+    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1000",
+    "description": "Stone-baked pizzas made with fresh ingredients and classic Italian flavors.",
+    "menuSections": [
+      {
+        "id": "pizza",
+        "name": "Pizza",
+        "items": [
+          {
+            "id": "pizza-001",
+            "name": "Margherita",
+            "description": "Tomato sauce, fresh mozzarella, basil and olive oil.",
+            "price": 13.0,
+            "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600",
+            "badge": "POPULAR"
+          },
+          {
+            "id": "pizza-002",
+            "name": "Pepperoni",
+            "description": "Mozzarella, tomato sauce and spicy pepperoni.",
+            "price": 15.5,
+            "image": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600",
+            "badge": null
+          },
+          {
+            "id": "pizza-003",
+            "name": "Four Cheese",
+            "description": "Mozzarella, parmesan, gorgonzola and ricotta.",
+            "price": 16.0,
+            "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "sides",
+        "name": "Sides",
+        "items": [
+          {
+            "id": "side-101",
+            "name": "Garlic Bread",
+            "description": "Toasted bread with garlic butter and parsley.",
+            "price": 4.5,
+            "image": "https://images.unsplash.com/photo-1619531040576-f9416740661f?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "name": "Drinks",
+        "items": [
+          {
+            "id": "drink-201",
+            "name": "Sparkling Lemon",
+            "description": "Sparkling water with fresh lemon.",
+            "price": 3.0,
+            "image": "https://images.unsplash.com/photo-1513558161293-c04e6f4e3b3c?w=600",
+            "badge": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "restaurant-004",
+    "name": "The Green Kitchen",
+    "cuisine": "Healthy",
+    "category": "Bowls",
+    "rating": 4.9,
+    "reviewsCount": 980,
+    "deliveryTime": "20-30 min",
+    "distance": 2.0,
+    "deliveryFee": 1.25,
+    "offer": {
+      "discount": "20% OFF",
+      "condition": "on your first order"
+    },
+    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1000",
+    "description": "Fresh, colorful bowls packed with nourishing ingredients.",
+    "menuSections": [
+      {
+        "id": "bowls",
+        "name": "Bowls",
+        "items": [
+          {
+            "id": "bowl-001",
+            "name": "Green Goddess Bowl",
+            "description": "Avocado, quinoa, cucumber, greens and tahini dressing.",
+            "price": 12.5,
+            "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
+            "badge": "POPULAR"
+          },
+          {
+            "id": "bowl-002",
+            "name": "Crispy Chicken Bowl",
+            "description": "Crispy chicken, brown rice, slaw and sesame dressing.",
+            "price": 13.5,
+            "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
+            "badge": null
+          },
+          {
+            "id": "bowl-003",
+            "name": "Mediterranean Bowl",
+            "description": "Falafel, hummus, tomato, cucumber and warm grains.",
+            "price": 11.5,
+            "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "name": "Drinks",
+        "items": [
+          {
+            "id": "drink-301",
+            "name": "Berry Smoothie",
+            "description": "Mixed berries blended with banana and yogurt.",
+            "price": 5.5,
+            "image": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=600",
+            "badge": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "restaurant-005",
+    "name": "Taco Corner",
+    "cuisine": "Mexican",
+    "category": "Tacos",
+    "rating": 4.6,
+    "reviewsCount": 760,
+    "deliveryTime": "15-25 min",
+    "distance": 2.7,
+    "deliveryFee": 1.5,
+    "offer": {
+      "discount": "10% OFF",
+      "condition": "on orders over $20"
+    },
+    "image": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=1000",
+    "description": "Street-style tacos with bold fillings, fresh salsa and handmade tortillas.",
+    "menuSections": [
+      {
+        "id": "tacos",
+        "name": "Tacos",
+        "items": [
+          {
+            "id": "taco-001",
+            "name": "Beef Birria Tacos",
+            "description": "Slow-cooked beef, melted cheese, onion and consommé.",
+            "price": 12.0,
+            "image": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600",
+            "badge": "BESTSELLER"
+          },
+          {
+            "id": "taco-002",
+            "name": "Chicken Tinga Tacos",
+            "description": "Chipotle chicken, cabbage, crema and fresh cilantro.",
+            "price": 10.5,
+            "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "sides",
+        "name": "Sides",
+        "items": [
+          {
+            "id": "side-201",
+            "name": "Nachos",
+            "description": "Crispy tortilla chips, cheese, pico de gallo and jalapeño.",
+            "price": 7.0,
+            "image": "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=600",
+            "badge": null
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "name": "Drinks",
+        "items": [
+          {
+            "id": "drink-401",
+            "name": "Hibiscus Cooler",
+            "description": "Chilled hibiscus tea with citrus.",
+            "price": 4.0,
+            "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600",
+            "badge": null
+          }
+        ]
+      }
+    ]
+  }
+]

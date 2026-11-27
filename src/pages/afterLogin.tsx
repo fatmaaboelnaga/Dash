@@ -10,7 +10,18 @@ import OrderHistory from "../components/OrderHistory";
 import Password from "../components/Password";
 import SignOut from "../components/SignOut";
 
-const AfterLogin = () => {
+type AfterLoginProps = {
+  favoriteRestaurantIds: string[];
+  onToggleFavorite: (restaurantId: string) => void;
+  onSelectRestaurant: (restaurantId: string) => void;
+};
+
+
+const AfterLogin = ({
+  favoriteRestaurantIds,
+  onToggleFavorite,
+  onSelectRestaurant,
+}: AfterLoginProps) => {
   return (
     <ScrollView style={styles.afterLoginCont}>
       <View style={styles.header}>
@@ -24,9 +35,11 @@ const AfterLogin = () => {
         <Personalinfo />
 
         <SavedAddresses />
-
-        <Favorites />
-
+<Favorites
+  favoriteRestaurantIds={favoriteRestaurantIds}
+  onToggleFavorite={onToggleFavorite}
+  onSelectRestaurant={onSelectRestaurant}
+/>
         <PaymentAndNotifications />
 
         <OrderHistory />

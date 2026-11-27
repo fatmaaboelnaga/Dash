@@ -14,89 +14,40 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Categories from "../components/Categories";
 import RestaurantCard from "../components/RestaurantCard";
+import restaurants from "../data/restaurants.json";
 
 type SearchProps = {
   initialCategory?: string | null;
   initialSearchText?: string;
   onBack?: () => void;
-};
+  onSelectRestaurant: (restaurantId: string) => void;
 
-// بيانات المطاعم مؤقتًا داخل الصفحة
-const restaurants = [
-  {
-    id: "1",
-    name: "The Green Kitchen",
-    category: "Bowls",
-    rating: "4.9",
-    time: "20-30 min",
-    price: "$12.50",
-    image:
-      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
-    offer: "20% OFF",
-  },
-  {
-    id: "2",
-    name: "Urban Burger",
-    category: "Burgers",
-    rating: "4.8",
-    time: "15-25 min",
-    price: "$10.99",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
-    offer: "FREE DELIVERY",
-  },
-  {
-    id: "3",
-    name: "Pizza House",
-    category: "Pizza",
-    rating: "4.7",
-    time: "25-35 min",
-    price: "$14.00",
-    image:
-      "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600",
-    offer: "",
-  },
-  {
-    id: "4",
-    name: "Ramen Spot",
-    category: "Ramen",
-    rating: "4.8",
-    time: "20-30 min",
-    price: "$13.00",
-    image:
-      "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600",
-    offer: "15% OFF",
-  },
-  {
-    id: "5",
-    name: "Taco Corner",
-    category: "Tacos",
-    rating: "4.6",
-    time: "15-25 min",
-    price: "$9.50",
-    image:
-      "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600",
-    offer: "",
-  },
-];
+  // Favorites
+  favoriteRestaurantIds: string[];
+  onToggleFavorite: (restaurantId: string) => void;
+};
 
 const Search = ({
   initialCategory = null,
   initialSearchText = "",
   onBack,
+  onSelectRestaurant,
+  favoriteRestaurantIds,
+  onToggleFavorite,
 }: SearchProps) => {
   const [searchText, setSearchText] = useState(initialSearchText);
 
   const [selectedCategory, setSelectedCategory] =
     useState<string | null>(initialCategory);
 
-  // البحث بالاسم أو نوع المطعم
+  // Filter restaurants
   const filteredRestaurants = restaurants.filter((restaurant) => {
     const search = searchText.toLowerCase().trim();
 
     const matchesSearch =
       restaurant.name.toLowerCase().includes(search) ||
-      restaurant.category.toLowerCase().includes(search);
+      restaurant.category.toLowerCase().includes(search) ||
+      restaurant.description.toLowerCase().includes(search);
 
     const matchesCategory =
       selectedCategory === null ||
@@ -178,10 +129,15 @@ const Search = ({
               name={item.name}
               category={item.category}
               rating={item.rating}
-              time={item.time}
-              price={item.price}
+              time={item.deliveryTime}
+              price={`$${item.deliveryFee} delivery`}
               image={item.image}
-              offer={item.offer}
+              offer={item.offer?.discount || ""}
+              onPress={() => onSelectRestaurant(item.id)}
+
+              // Favorites
+              isFavorite={favoriteRestaurantIds.includes(item.id)}
+              onToggleFavorite={() => onToggleFavorite(item.id)}
             />
           ))
         ) : (
@@ -210,11 +166,11 @@ export default Search;
 
 const styles = StyleSheet.create({
   container: {
-  flex: 1,
-  backgroundColor: "#F7F8F6",
-  paddingHorizontal: s(20),
-  paddingTop: s(60),
-},
+    flex: 1,
+    backgroundColor: "#F7F8F6",
+    paddingHorizontal: s(20),
+    paddingTop: s(60),
+  },
 
   header: {
     flexDirection: "row",
