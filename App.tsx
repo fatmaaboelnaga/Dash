@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from 'react-native';
-
+import SignIn from"./src/pages/SignIn"
+import CreateAccount from './src/pages/CreateAccount';
 // export default function App() {
 //   return (
 //     <View style={styles.container}>
@@ -30,7 +31,7 @@ import Home from "./src/pages/Home";
 import Search from "./src/pages/search";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<"Home" | "Search">("Home");
+  const [currentPage, setCurrentPage] = useState<"Home" | "Search"|"signIn"|"CreateAccount">("signIn");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -49,22 +50,27 @@ const handleHomeSearch = (text: string) => {
   }
 };
 
-  return (
-    <View style={styles.container}>
-      {currentPage === "Home" ? (
-        <Home
-          onSelectCategory={openSearch}
-          onSearch={handleHomeSearch}
-        />
-      ) : (
-        <Search
-          initialCategory={selectedCategory}
-          initialSearchText={searchQuery}
-          onBack={() => setCurrentPage("Home")}
-        />
-      )}
-    </View>
-  );
+  // return (
+  //   <View style={styles.container}>
+  //     {currentPage === "Home" ? (
+  //       <Home
+  //         onSelectCategory={openSearch}
+  //         onSearch={handleHomeSearch}
+  //       />
+  //     ) : (
+  //       <Search
+  //         initialCategory={selectedCategory}
+  //         initialSearchText={searchQuery}
+  //         onBack={() => setCurrentPage("Home")}
+  //       />
+  //     )}
+  //   </View>
+  // );
+return (
+  <View style={styles.container}>
+    <CreateAccount />
+  </View>
+);
 }
 
 const styles = StyleSheet.create({
