@@ -35,11 +35,11 @@ const AfterLogin = ({
         <Personalinfo />
 
         <SavedAddresses />
-<Favorites
+{/* <Favorites
   favoriteRestaurantIds={favoriteRestaurantIds}
   onToggleFavorite={onToggleFavorite}
   onSelectRestaurant={onSelectRestaurant}
-/>
+/> */}
         <PaymentAndNotifications />
 
         <OrderHistory />
