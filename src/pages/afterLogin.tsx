@@ -1,4 +1,10 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { s } from "react-native-size-matters";
 import React from "react";
 import UserInfo from "../components/UserInfo";
@@ -16,7 +22,6 @@ type AfterLoginProps = {
   onSelectRestaurant: (restaurantId: string) => void;
 };
 
-
 const AfterLogin = ({
   favoriteRestaurantIds,
   onToggleFavorite,
@@ -32,23 +37,25 @@ const AfterLogin = ({
         <UserInfo />
       </View>
 
-        <Personalinfo />
+      <Personalinfo />
 
-        <SavedAddresses />
-{/* <Favorites
+      <SavedAddresses />
+      {/* <Favorites
   favoriteRestaurantIds={favoriteRestaurantIds}
   onToggleFavorite={onToggleFavorite}
   onSelectRestaurant={onSelectRestaurant}
 /> */}
-        <PaymentAndNotifications />
+      <PaymentAndNotifications />
 
-        <OrderHistory />
+      <OrderHistory />
 
-        <Password />
+      <Password />
 
-        <SignOut />
+      <SignOut />
 
+      <TouchableOpacity>
         <Text style={styles.delAcc}>Delete account</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -58,6 +65,7 @@ export default AfterLogin;
 const styles = StyleSheet.create({
   afterLoginCont: {
     paddingHorizontal: s(22),
+    backgroundColor:"#f4f1f7",
   },
 
   header: {
@@ -72,10 +80,10 @@ const styles = StyleSheet.create({
   userInfoCont: {
     alignItems: "center",
   },
-  delAcc:{
-    color:"#ca3939",
-    marginBottom:s(70),
-    fontSize:s(13),
-    alignSelf:"center"
+  delAcc: {
+    color: "#ca3939",
+    marginBottom: s(70),
+    fontSize: s(13),
+    alignSelf: "center",
   },
 });
