@@ -6,14 +6,14 @@ import Home from "./src/pages/Home";
 import Search from "./src/pages/search";
 import AfterLogin from "./src/pages/afterLogin";
 import { View } from "react-native";
-import { Background } from './node_modules/@react-navigation/elements/lib/module/Background';
+
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //     <MyTabs />
-    // </NavigationContainer>
-    <AfterLogin />
+    <NavigationContainer>
+        <MyTabs />
+    </NavigationContainer>
+    // <AfterLogin />
   )
 }
 
