@@ -17,7 +17,7 @@ const SavedAddresses = () => {
 
         <TouchableOpacity onPress={() => setExpanded(!expanded)}>
           <Text style={{fontWeight:"bold", color:"#075B36"}}>
-            {expanded ? "Cancel" : "+ Add"}
+            {expanded ? "" : "+ Add"}
           </Text>
         </TouchableOpacity>
       </View>
