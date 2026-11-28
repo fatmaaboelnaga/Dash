@@ -29,7 +29,7 @@ const PaymentAndNotifications = () => {
 
   const [selectedPayment, setSelectedPayment] = useState("Apple Pay");
   const [isActive1, setActive1] = useState(false);
-  const [isActive2, setActive2] = useState(false);
+  const [isActive2, setActive2] = useState(true);
 
 
   return (
@@ -77,7 +77,7 @@ const PaymentAndNotifications = () => {
         onPress={()=>setActive2(!isActive2)}
         >
             <View style={[styles.switch, !isActive2&&styles.offSwitch, isActive2&&styles.onSwitch]}>
-                <View style={[styles.innerSwitch, !isActive2&&styles.offInner, isActive2&&styles.onInner]} />
+                <View style={[styles.innerSwitch]} />
             </View>
 
         </TouchableOpacity>
@@ -99,7 +99,7 @@ const PaymentAndNotifications = () => {
         onPress={()=>setActive1(!isActive1)}
         >
             <View style={[styles.switch, !isActive1&&styles.offSwitch, isActive1&&styles.onSwitch]}>
-                <View style={[styles.innerSwitch, !isActive1&&styles.offInner, isActive1&&styles.onInner]} />
+                <View style={[styles.innerSwitch]} />
             </View>
         </TouchableOpacity>
       </View>
