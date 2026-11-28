@@ -10,10 +10,10 @@ import { View } from "react-native";
 
 export default function App() {
   return (
-    <NavigationContainer>
-        <MyTabs />
-    </NavigationContainer>
-    // <AfterLogin />
+    // <NavigationContainer>
+    //     <MyTabs />
+    // </NavigationContainer>
+    <AfterLogin />
   )
 }
 

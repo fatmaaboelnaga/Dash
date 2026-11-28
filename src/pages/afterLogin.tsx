@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    fontSize: s(25),
+    fontSize: s(30),
     fontWeight: "700",
   },
   userInfoCont: {

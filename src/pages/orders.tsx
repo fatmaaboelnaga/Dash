@@ -16,7 +16,7 @@ type ordersProps = {orderSomething? : ()=> void;
 const Orders = ({orderSomething}:ordersProps)=>{return(
     <View style={styles.container}>
         <View style={styles.header}>
-            <Text style={styles.header_title}>ORDERS</Text>
+            <Text style={styles.header_title}>Orders</Text>
         </View>
         
          <View style={styles.content}>
