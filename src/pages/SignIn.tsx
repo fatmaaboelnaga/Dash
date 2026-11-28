@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,252 +6,289 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
   ScrollView,
-} from 'react-native';
+} from "react-native";
 
 interface SignInProps {
   onCreateAccount?: () => void;
   onSignIn?: (email: string, password: string) => void;
 }
 
-const SignIn: React.FC<SignInProps> = ({
+export default function SignIn({
   onCreateAccount,
   onSignIn,
-}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+}: SignInProps) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSignIn = () => {
-    if (!email.trim() || !password.trim()) {
-      Alert.alert('Error', 'Please enter your email and password.');
+    if (!email.trim() || !password) {
+      setError("Please fill in all fields");
       return;
     }
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      Alert.alert('Error', 'Please enter a valid email address.');
+    if (!email.includes("@")) {
+      setError("Please enter a valid email");
       return;
     }
 
+    setError("");
     onSignIn?.(email.trim(), password);
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
       >
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          keyboardShouldPersistTaps="handled"
-        >
-          <View style={styles.content}>
+        <View style={styles.content}>
 
-            <Text style={styles.logo}>
-              dash<Text style={styles.logoDot}>.</Text>
+          {/* Logo */}
+          <Text style={styles.logo}>
+            Dash<Text style={styles.logoDot}>.</Text>
+          </Text>
+
+          {/* Heading */}
+          <View style={styles.heading}>
+            <Text style={styles.title}>
+              Welcome Back
             </Text>
 
-            <View style={styles.header}>
-              <Text style={styles.title}>Welcome back</Text>
+            <Text style={styles.subtitle}>
+              Sign in to see your orders, addresses and favorites.
+            </Text>
+          </View>
 
-              <Text style={styles.subtitle}>
-                Sign in to see your orders, addresses and favorites.
-              </Text>
-            </View>
+          {/* Form */}
+          <View style={styles.form}>
 
-            <View style={styles.form}>
+            {/* Email */}
+            <Text style={styles.label}>Email Address</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your email"
+              placeholderTextColor="#999999"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
+            />
 
-              <Text style={styles.label}>Email</Text>
-
+            {/* Password */}
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.passwordContainer}>
               <TextInput
-                style={styles.input}
-                placeholder="you@example.com"
-                placeholderTextColor="#888888"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-                value={email}
-                onChangeText={setEmail}
+                style={styles.passwordInput}
+                placeholder="Enter your password"
+                placeholderTextColor="#999999"
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={setPassword}
               />
 
-              <Text style={styles.label}>Password</Text>
-
-              <View style={styles.passwordContainer}>
-                <TextInput
-                  style={styles.passwordInput}
-                  placeholder="Enter your password"
-                  placeholderTextColor="#888888"
-                  secureTextEntry={!showPassword}
-                  value={password}
-                  onChangeText={setPassword}
-                  autoCapitalize="none"
-                />
-
-                <TouchableOpacity
-                  onPress={() => setShowPassword(!showPassword)}
-                >
-                  <Text style={styles.eyeIcon}>
-                    {showPassword ? 'Hide' : 'Show'}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-
               <TouchableOpacity
-                style={styles.signInButton}
-                onPress={handleSignIn}
-                activeOpacity={0.8}
+                onPress={() => setShowPassword(!showPassword)}
+                style={styles.eyeButton}
+                activeOpacity={0.7}
               >
-                <Text style={styles.signInText}>Sign in</Text>
+                <View style={styles.eyeShape}>
+                  <View style={styles.eyePupil} />
+                </View>
               </TouchableOpacity>
-
             </View>
 
+            {/* Error */}
+            {error ? (
+              <Text style={styles.error}>{error}</Text>
+            ) : null}
+
+            {/* Sign In Button */}
+            <TouchableOpacity
+              style={styles.mainButton}
+              onPress={handleSignIn}
+              activeOpacity={0.85}
+            >
+              <Text style={styles.mainButtonText}>
+                Sign In
+              </Text>
+            </TouchableOpacity>
+
+            {/* Footer */}
             <View style={styles.footer}>
               <Text style={styles.footerText}>
-                New to Dash?{' '}
+                New to Dash?{" "}
               </Text>
 
               <TouchableOpacity onPress={onCreateAccount}>
                 <Text style={styles.linkText}>
-                  Create an account
+                  Create Account
                 </Text>
               </TouchableOpacity>
             </View>
 
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F7F7F2',
+    backgroundColor: "#F8F8F5",
   },
 
   scrollContent: {
     flexGrow: 1,
+    justifyContent: "center",
+    paddingVertical: 30,
   },
 
   content: {
-    flex: 1,
-    paddingHorizontal: 32,
-    paddingTop: 45,
-    paddingBottom: 40,
+    width: "100%",
+    maxWidth: 480,
+    alignSelf: "center",
+    paddingHorizontal: 24,
   },
-
   logo: {
     fontSize: 30,
-    fontWeight: '800',
-    color: '#101820',
-    marginBottom: 110,
+    fontWeight: "900",
+    color: "#111B19",
+    letterSpacing: -1,
+    marginBottom: 65,
   },
 
   logoDot: {
-    color: '#FFC21A',
+    color: "#FFC21A",
   },
 
-  header: {
-    marginBottom: 50,
-  },title: {
-    fontSize: 38,
-    fontWeight: '800',
-    color: '#101820',
-    marginBottom: 22,
+  heading: {
+    marginBottom: 42,
+  },
+
+  title: {
+    fontSize: 32,
+    fontWeight: "800",
+    color: "#111B19",
+    letterSpacing: -0.8,
+    marginBottom: 12,
   },
 
   subtitle: {
-    fontSize: 17,
-    lineHeight: 27,
-    color: '#777777',
+    fontSize: 16,
+    lineHeight: 24,
+    color: "#777B76",
   },
 
   form: {
-    width: '100%',
+    width: "100%",
   },
 
   label: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#263238',
-    marginBottom: 14,
-    marginTop: 12,
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#26312D",
+    marginBottom: 12,
+    marginTop: 22,
   },
 
   input: {
-    height: 66,
-    backgroundColor: '#FFFFFF',
+    height: 60,
+    borderRadius: 19,
     borderWidth: 1,
-    borderColor: '#E7E7E2',
-    borderRadius: 40,
-    paddingHorizontal: 22,
-    fontSize: 17,
-    color: '#222222',
-    marginBottom: 30,
+    borderColor: "#DEDFDA",
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 20,
+    fontSize: 16,
+    color: "#202820",
   },
 
   passwordContainer: {
-    height: 66,
-    backgroundColor: '#FFFFFF',
+    height: 60,
+    borderRadius: 19,
     borderWidth: 1,
-    borderColor: '#E7E7E2',
-    borderRadius: 40,
-    paddingHorizontal: 22,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 45,
+    borderColor: "#DEDFDA",
+    backgroundColor: "#FFFFFF",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 16,
   },
 
   passwordInput: {
     flex: 1,
-    fontSize: 17,
-    color: '#222222',
+    height: "100%",
+    fontSize: 16,
+    color: "#202820",
   },
 
-  eyeIcon: {
-    fontSize: 14,
-    color: '#777777',
-    fontWeight: '600',
+  eyeButton: {
+    width: 40,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
-  signInButton: {
-    height: 68,
-    backgroundColor: '#FFC21A',
-    borderRadius: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+  eyeShape: {
+    width: 20,
+    height: 16,
+    borderWidth: 2,
+    borderColor: "#737A75",
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
-  signInText: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#172019',
+  eyePupil: {
+    width: 7,
+    height: 7,
+    borderWidth: 2,
+    borderColor: "#737A75",
+    borderRadius: 5,
+  },
+
+  error: {
+    color: "#C43D3D",
+    fontSize: 13,
+    marginTop: 10,
+  },
+
+  mainButton: {
+    height: 64,
+    borderRadius: 19,
+    backgroundColor: "#FFC21A",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 38,
+  },
+
+  mainButtonText: {
+    fontSize: 18,
+    fontWeight: "800",
+    color: "#17221D",
   },
 
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 55,
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    marginTop: 35,
   },
 
   footerText: {
-    fontSize: 16,
-    color: '#777777',
+    fontSize: 15,
+    color: "#777B76",
   },
 
   linkText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#285B49',
+    fontSize: 15,
+    fontWeight: "700",
+    color: "#26764F",
   },
 });
-
-export default SignIn;
